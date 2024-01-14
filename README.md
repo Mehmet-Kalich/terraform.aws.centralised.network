@@ -5,7 +5,9 @@ The problem with the conventional approach…
 
 ![image](https://github.com/Mehmet-Kalich/terraform.aws.centralised.network/assets/86363079/bcbf9abb-a196-4375-82aa-66b8f1e9d4bf)
 
-In a small, straightforward AWS networks, delegating the responsibility of provisioning network resources and managing internet access to a single workload account is manageable. Private services utilise the designated private subnet, which is configured with a route table directing outbound traffic to a NAT gateway that we have situated in a public subnet. The NAT gateway, in turn, facilitates the translation of private IP addresses to public IP addresses before the egress traffic is directed through the Internet Gateway and out into the internet - the exact same is done in reverse with incoming traffic. Simple enough right? For AWS accounts used for testing, labs or even very small organisations, this network architecture is the most logical and straightforward. But what about when the size of our organisation and number of workload accounts increase?
+In a small, straightforward AWS networks, delegating the responsibility of provisioning network resources and managing internet access to a single workload account is manageable. Private services utilise the designated private subnet, which is configured with a route table directing outbound traffic to a NAT gateway that we have situated in a public subnet. 
+
+The NAT gateway, in turn, facilitates the translation of private IP addresses to public IP addresses before the egress traffic is directed through the Internet Gateway and out into the internet - the exact same is done in reverse with incoming traffic. Simple enough right? For AWS accounts used for testing, labs or even very small organisations, this network architecture is the most logical and straightforward. But what about when the size of our organisation and number of workload accounts increase?
 
 ![image](https://github.com/Mehmet-Kalich/terraform.aws.centralised.network/assets/86363079/26f88703-15c7-4b59-afd3-c7a36b2c50ea)
 
