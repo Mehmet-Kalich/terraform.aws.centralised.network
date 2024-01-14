@@ -24,8 +24,16 @@ In order for us to achieve this architecture, there are 2 core services within t
 2.	The use of Transit Gateway as a means to route traffic to and from the Networking Account (the “Hub”) to the workload accounts (the “spokes”).
 
 If we inspect the diagram above closer, the use of RAM can be seen in our creation of 3 separate VPCs (Dev, UAT, PRD), each with 3 separate subnets nested within each availability zone they reside in (AZ1, AZ2, AZ3). RAM enables us to share the DEV VPC and its subnets from the networking account with the DEV workload account, the UAT VPC and subnets with the UAT workload account, and the same for the PRD account. 
+
 While services and applications from each of these workload accounts may have specific permissions to use and operate from within these shared resources, (and for all intents nad purposes may appear to be owned by the account they have been shared with) the workload acocunts do not have ownership to delete or modify these VPCs and subnets. 
+
 This ownership is solely reserved for the Networking Account that these resources were created in. From a security and compliance perspective this is a massive win, as we have reduced the attack surface for potential cyber bad guys who hypothetically may have the potential to break into one of the workload accounts, but cannot do anything to the network architecture and resources that the entire organisation relies upon.
 
 With regards to the 2nd core service in this centralised network architecture, the Transit Gateway (as seen to the right hand side of the diagram) is used as the physical hub for routing traffic between the ingress/egress Networking Account and each of the workload accounts. Traffic is routed to and from this Transit Gateway from each of the shared VPCs route tables, which forwards traffic towards the Networking Account from a specific shared subnet (named TGW Subnet) in each availability zone. 
+
+This is what ingress and egress internet traffic looks like when utilising this centralised hub-spoke network architecture: (note: **NA** means the resource is within the Network Account, while **WA** means it is inside the workload account - DEV, UAT, PRD etc). 
+
+Internet ➡️ internet gateway (**NA**) ➡️ public egress subnet (**NA**) ➡️ NAT Gateway(**NA**) ➡️ private egress subnet (**NA**) ➡️ transit gateway (**NA**) ➡️ PRD VPC (**WA**) ➡️ TGW Subnet (**WA**) ➡️ App Subnet (**WA**) ➡️ AWS resources utilising the app subnets. 
+
+When these 2 core services are used in tandem, the 
 
