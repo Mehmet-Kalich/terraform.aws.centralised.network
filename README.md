@@ -35,5 +35,7 @@ This is what ingress and egress internet traffic looks like when utilising this 
 
 Internet ➡️ internet gateway (**NA**) ➡️ public egress subnet (**NA**) ➡️ NAT Gateway(**NA**) ➡️ private egress subnet (**NA**) ➡️ transit gateway (**NA**) ➡️ PRD VPC (**WA**) ➡️ TGW Subnet (**WA**) ➡️ App Subnet (**WA**) ➡️ AWS resources utilising the app subnets. 
 
-When these 2 core services are used in tandem, the 
+In conclusion, this Terraform AWS Centralized Network Repository offers a robust solution to the challenges posed by decentralized network architectures. By adopting a centralized "Hub and Spoke" network topology, organizations can achieve enhanced security, reduced operational complexities, and cost-effectiveness as they scale their AWS infrastructure.
+
+In contrast to the conventional approach of allowing individual workload accounts to manage their own network resources, the centralised strategy presented here leverages Terraform/IaC principles to streamline the network provisioning process. This approach not only minimizes the attack surface for potential security threats but also optimizes cost management and compliance standards.
 
